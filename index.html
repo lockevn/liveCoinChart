@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>XC Real-time</title>
+
+    <link rel="stylesheet" href="css/epoch.css">
+    <link rel="stylesheet" href="css/pure-min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-27836764-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-27836764-4');
+    </script>
+
+    <script src="js/lib/underscore-min.js"></script>    
+    <script src="js/xcUtil.js"></script>
+
+    <script src="js/lib/vue.js"></script>
+
+    <script src="js/lib/jquery.js"></script>
+    <script src="js/lib/d3.js"></script>
+    <script src="js/lib/epoch.js"></script>
+    <script src="js/lib/highcharts.js"></script>
+    <script src="js/lib/highcharts.dark.theme.js"></script>
+    <!--theme-->
+
+
+    <script src="js/services/xcHitBTCService.js"></script>
+    <script src="js/vueComponents.realtimechart.js"></script>
+    <script src="js/vueComponents.controlbox.js"></script>
+</head>
+
+<body class="docs">
+    <div id="vueapp" style="text-align: center">
+        <div class="container">
+            <div is="datasource-selector" @input="ds => { datasourceSelector = ds; symbol = ds.symbol; }"></div>
+
+            <div is="realtime-chart" :symbol="symbol" :last-tick="lastTick"></div>
+            <div is="realtime-highchart" :symbol="symbol" :last-tick="lastTick"></div>
+
+            <div is="realtime-updater" :symbol="symbol" @lasttick="lt => {lastTick = lt}"></div>
+
+            <div class="pure-u-1-1 code center" style="margin-bottom: 10rem;">
+                <h3>Debugging info</h3>
+                {{lastTick}} {{symbol}}
+            </div>
+        </div>
+    </div>
+
+    <div class="floatingTopRightCredit">
+        v1.0 +Lockevn
+    </div>
+
+
+    <script>        
+        var xcUtil = new xcUtil({});
+
+        function initVueApp() {
+            return new Promise(function (resolve, reject) {
+                var app = new Vue({
+                    data: {
+                        lastTick: {
+                            p: +(xcUtil.getOrSetLocalStorage(this.symbol, 0)),
+                            v: 0,
+                            time: (Date.now() / 1000) | 0
+                        },
+
+                        datasourceSelector: {}, // hold this to share with all other components, this is set by datasourceSelectorComponent
+                        symbol: '',                        
+                    },
+                    created: function () {
+                        resolve(this);  // resolve the promise with this vueapp
+                    },
+
+                });
+
+            });  // end promise
+        }   // end initVueApp()
+
+        document.addEventListener("DOMContentLoaded", async function onDOMContentLoaded() {
+            var app = await initVueApp();
+            app.$mount("#vueapp");
+
+        }); // on DOMContentLoaded
+    </script>
+</body>
+
+</html>
