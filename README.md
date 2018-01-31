@@ -3,6 +3,7 @@
  - Put this repo into a folder
  - Just open the index.html file in browser
  - Does not need to run webserver to play with this
+ - or open https://cdn.rawgit.com/lockevn/liveCoinChart/755fb84c/index.html
 
 
 # Technical
