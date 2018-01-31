@@ -1,0 +1,78 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+}
+
+.code {
+    font-family: Consolas, Courier New, Courier, monospace;
+    color: blue;
+    font-size: 0.5rem;
+    margin-top: 1rem;
+}
+
+
+/*Put on pure-grid https://stackoverflow.com/questions/41650700/pure-css-responsive-centered-columns */
+.center {
+    justify-content: center;
+}
+
+/* set box */
+.pure-g > div {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.button-small {
+    font-size: 85%;
+}
+
+input.small {
+    width: 5em;
+}
+
+input.numeric {
+    text-align: right;
+}
+
+input[type=checkbox] {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.box {
+    border-radius: 10px;
+    margin: 0.5rem 1rem 1rem 1rem;
+    padding: 0.2rem;
+    box-shadow: rgba(112,128,144,0.28) 4px 4px 10px 2px;
+    border: 1px solid rgba(112,128,144,0.82); /*slategray*/
+    font-size: 1.5vw;
+}
+
+.controlBox {
+    background-color: rgba(112,128,144,0.82);
+    vertical-align: middle;
+    font-family: serif;
+}
+
+    .controlBox input {
+        vertical-align: middle;
+    }
+
+    .controlBox select {
+        height: 1.5rem;
+    }
+
+.floatingTopRightCredit {
+    font-family: Consolas, Courier New, Courier, monospace;
+    color: white;
+    font-size: 0.7rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    min-width: 10vw;
+    max-width: 20vw;
+    height: auto;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+}
+
